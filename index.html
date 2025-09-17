@@ -96,6 +96,9 @@
       <li>Старайтесь формулировать запросы конкретно (стиль, тон, фон, детали).</li>
       <li>Если кредиты закончились — откройте «Купить подписку» или используйте реферальный код.</li>
       <li>Сложные запросы могут занимать больше времени — дождитесь ответа бота.</li>
+      <li>Сначала загружай фото, затем отдельным запросом промпт.</li>
+      <li>Если бот упал с ошибкой "Упс, что-то пошло не так при генерации. Попробуйте ещё раз позже.", попробуйте еще раз или поменяйте промпт.</li>
+      <li>Если за невалидную генерацию ошибочно списались кредиты, пишите в техподдержку @lechat_Alexey.</li>
     </ul>
   </div>
 
@@ -103,21 +106,29 @@
 </div>
 
 <script>
+  const BOT_URL = "https://t.me/qwena100_kiddle_bot";
   const tg = window.Telegram?.WebApp;
+
   if (tg) {
     tg.expand();
-    tg.MainButton.setText("Открыть бота");
-    tg.MainButton.onClick(() => tg.openTelegramLink("https://t.me/qwena100_kiddle_bot"));
+    tg.MainButton.setText("Начать генерировать");
+    tg.MainButton.onClick(() => {
+      tg.openTelegramLink(BOT_URL);
+      // чуть подождём, чтобы линк успел открыться, затем закроем mini-app
+      setTimeout(() => tg.close(), 150);
+    });
     tg.MainButton.show();
-    document.getElementById('open-bot').onclick = (e) => {
-      e.preventDefault();
-      tg.openTelegramLink("https://t.me/qwena100_kiddle_bot");
-    };
-    document.body.style.backgroundColor = tg.themeParams.bg_color || "#fff";
+
+    // подстройка под тему Telegram
+    if (tg.themeParams?.bg_color) {
+      document.body.style.backgroundColor = tg.themeParams.bg_color;
+    }
   } else {
-    document.getElementById('open-bot').href = "https://t.me/qwena100_kiddle_bot";
+    // если открыто вне Telegram — просто переадресуем в бота
+    window.location.href = BOT_URL;
   }
 </script>
+
 </body>
 </html>
 
