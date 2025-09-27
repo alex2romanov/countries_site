@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nano Banana — Guide</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,Arial,sans-serif;margin:0;padding:16px;line-height:1.5;}
+    .container{max-width:920px;margin:0 auto;}
+    h1{margin:0 0 12px 0;font-size:28px}
+    .card{border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:16px;margin:12px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+    img{width:100%;height:auto;border-radius:12px;display:block}
+    .muted{opacity:.75}
+    .code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:#f6f6f6;border-radius:8px;padding:8px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid rgba(0,0,0,.1);text-decoration:none}
+    .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .pair img{width:100%;height:auto;border-radius:12px;display:block}
+    @media (max-width:560px){ .pair{grid-template-columns:1fr} }
+    .prompt-tag{font-weight:600;border:1px solid rgba(0,0,0,.08);border-left:6px solid #5b8def;border-radius:12px;padding:10px 12px;background:linear-gradient(180deg,rgba(0,0,0,.03),rgba(0,0,0,.015));margin:8px 0 10px;word-break:break-word;}
+    .prompt-tag small{opacity:.75;font-weight:500;margin-right:6px}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>How to use Nano Banana</h1>
+  <p class="muted">A short guide with examples. Open the bot and follow the steps below.</p>
+
+  <div class="card">
+    <h3>1. Upload a photo</h3>
+    <p>Send a single source photo to the chat. The bot will save it and prompt you to enter a text request (prompt).</p>
+    <div class="grid">
+      <img src="example_input_1.jpg" alt="Example input photo">
+      <img src="example_input_2.jpg" alt="Example input photo">
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>2. Enter a prompt</h3>
+    <p>For example:</p>
+    <div class="code">“Make a warm-toned comic style”</div>
+    <div class="code" style="margin-top:6px">“Add a soft glow and a studio background”</div>
+  </div>
+
+  <div class="card">
+    <h3>3. Results</h3>
+    <p>The bot will return a ready image. A few examples:</p>
+
+    <div class="grid">
+      <div>
+        <div class="prompt-tag"><small>Prompt:</small> “Dress in a suit”</div>
+        <div class="pair">
+          <img src="result_1a.jpg" alt="Result 1 — left">
+          <img src="result_1b.jpg" alt="Result 1 — right">
+        </div>
+      </div>
+      <div>
+        <div class="prompt-tag"><small>Prompt:</small> “Add a hoodie and hair”</div>
+        <div class="pair">
+          <img src="result_2a.jpg" alt="Result 2 — left">
+          <img src="result_2b.jpg" alt="Result 2 — right">
+        </div>
+      </div>
+      <div>
+        <div class="prompt-tag"><small>Prompt:</small> “Change the watch to a toy”</div>
+        <div class="pair">
+          <img src="result_3a.jpg" alt="Result 3 — left">
+          <img src="result_3b.jpg" alt="Result 3 — right">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Tips</h3>
+    <ul>
+      <li>Try to be specific in your prompts (style, tone, background, details).</li>
+      <li>If you run out of credits — open “Buy credits” or use a referral code.</li>
+      <li>Complex prompts may take longer — please wait for the bot’s reply.</li>
+      <li>First upload a photo, then send your prompt as a separate message.</li>
+      <li>If the bot shows “Oops, something went wrong. Please try again later.”, try again or tweak the prompt.</li>
+      <li>If credits were mistakenly charged for an invalid generation, contact support @lechat_Alexey.</li>
+    </ul>
+  </div>
+
+  <a id="open-bot" class="btn" href="#">Go to start</a>
+</div>
+
+<script>
+  const BOT_URL = "https://t.me/nanaaa_banana_bot";
+  const tg = window.Telegram?.WebApp;
+
+  if (tg) {
+    tg.expand();
+    tg.MainButton.setText("Start generating");
+    tg.MainButton.onClick(() => { tg.openTelegramLink(BOT_URL); setTimeout(() => tg.close(), 150); });
+    tg.MainButton.show();
+    if (tg.themeParams?.bg_color) document.body.style.backgroundColor = tg.themeParams.bg_color;
+  } else {
+    window.location.href = BOT_URL;
+  }
+</script>
+</body>
+</html>
