@@ -17,18 +17,11 @@
     .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid rgba(0,0,0,.1);text-decoration:none}
     .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     .pair img{width:100%;height:auto;border-radius:12px;display:block}
-    /* on very narrow screens stack the pair vertically */
     @media (max-width:560px){ .pair{grid-template-columns:1fr} }
-
     .prompt-tag{
-      font-weight:600;
-      border:1px solid rgba(0,0,0,.08);
-      border-left:6px solid #5b8def;
-      border-radius:12px;
-      padding:10px 12px;
-      background: linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.015));
-      margin:8px 0 10px;
-      word-break:break-word;
+      font-weight:600;border:1px solid rgba(0,0,0,.08);border-left:6px solid #5b8def;border-radius:12px;
+      padding:10px 12px;background:linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.015));
+      margin:8px 0 10px;word-break:break-word;
     }
     .prompt-tag small{opacity:.75;font-weight:500;margin-right:6px}
   </style>
@@ -42,8 +35,8 @@
     <h3>1. Upload a photo</h3>
     <p>Send a single source photo to the chat. The bot will save it and prompt you to enter a text request (prompt).</p>
     <div class="grid">
-      <img src="../example_input_1.jpg" alt="Example input photo">
-      <img src="../example_input_2.jpg" alt="Example input photo">
+      <img src="https://alex2romanov.github.io/countries_site/example_input_1.jpg" alt="Example input photo">
+      <img src="https://alex2romanov.github.io/countries_site/example_input_2.jpg" alt="Example input photo">
     </div>
   </div>
 
@@ -63,8 +56,8 @@
       <div>
         <div class="prompt-tag"><small>Prompt:</small> “Dress in a suit”</div>
         <div class="pair">
-          <img src="../result_1a.jpg" alt="Result 1 — left">
-          <img src="../result_1b.jpg" alt="Result 1 — right">
+          <img src="https://alex2romanov.github.io/countries_site/result_1a.jpg" alt="Result 1 — left">
+          <img src="https://alex2romanov.github.io/countries_site/result_1b.jpg" alt="Result 1 — right">
         </div>
       </div>
   
@@ -72,8 +65,8 @@
       <div>
         <div class="prompt-tag"><small>Prompt:</small> “Add a hoodie and hair”</div>
         <div class="pair">
-          <img src="../result_2a.jpg" alt="Result 2 — left">
-          <img src="../result_2b.jpg" alt="Result 2 — right">
+          <img src="https://alex2romanov.github.io/countries_site/result_2a.jpg" alt="Result 2 — left">
+          <img src="https://alex2romanov.github.io/countries_site/result_2b.jpg" alt="Result 2 — right">
         </div>
       </div>
   
@@ -81,8 +74,8 @@
       <div>
         <div class="prompt-tag"><small>Prompt:</small> “Change the watch to a toy”</div>
         <div class="pair">
-          <img src="../result_3a.jpg" alt="Result 3 — left">
-          <img src="../result_3b.jpg" alt="Result 3 — right">
+          <img src="https://alex2romanov.github.io/countries_site/result_3a.jpg" alt="Result 3 — left">
+          <img src="https://alex2romanov.github.io/countries_site/result_3b.jpg" alt="Result 3 — right">
         </div>
       </div>
     </div>
@@ -112,20 +105,18 @@
     tg.MainButton.setText("Start generating");
     tg.MainButton.onClick(() => {
       tg.openTelegramLink(BOT_URL);
-      // wait a bit so the link opens, then close the mini app
       setTimeout(() => tg.close(), 150);
     });
     tg.MainButton.show();
 
-    // adapt to Telegram theme
     if (tg.themeParams?.bg_color) {
       document.body.style.backgroundColor = tg.themeParams.bg_color;
     }
   } else {
-    // if opened outside Telegram — just redirect to the bot
     window.location.href = BOT_URL;
   }
 </script>
 
 </body>
 </html>
+
