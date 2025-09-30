@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nano Banana — инструкция</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu, Cantarell, Noto Sans, Arial, sans-serif;margin:0;padding:16px;line-height:1.5;}
+    .container{max-width:920px;margin:0 auto;}
+    h1{margin:0 0 12px 0;font-size:28px}
+    .card{border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:16px;margin:12px 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+    img{width:100%;height:auto;border-radius:12px;display:block}
+    .muted{opacity:.75}
+    .code{font-family:ui-monospace, SFMono-Regular, Menlo, monospace;background:#f6f6f6;border-radius:8px;padding:8px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid rgba(0,0,0,.1);text-decoration:none}
+    .pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .pair img{width:100%;height:auto;border-radius:12px;display:block}
+    /* на очень узких экранах складываем пару в столбик */
+    @media (max-width:560px){ .pair{grid-template-columns:1fr} }
+
+    .prompt-tag{
+    font-weight:600;
+    border:1px solid rgba(0,0,0,.08);
+    border-left:6px solid #5b8def;
+    border-radius:12px;
+    padding:10px 12px;
+    background: linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.015));
+    margin:8px 0 10px;
+    word-break:break-word;
+  }
+  .prompt-tag small{opacity:.75;font-weight:500;margin-right:6px}
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Как пользоваться Nano Banana</h1>
+  <p class="muted">Короткая инструкция с примерами. Откройте бота и следуйте шагам ниже.</p>
+
+  <div class="grid">
+    <video autoplay muted loop playsinline preload="metadata"
+           style="width:100%;height:auto;border-radius:12px;display:block">
+      <source src="dog.mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+  </div>
+
+  <div class="card">
+    <h3>2. Введите запрос</h3>
+    <p>Например:</p>
+    <div class="code">«Сделай стиль комикса в тёплых тонах»</div>
+    <div class="code" style="margin-top:6px">«Добавь мягкое свечение и фон студии»</div>
+  </div>
+  
+<div class="card">
+  <h3>3. Результаты</h3>
+  <p>Бот вернёт готовое изображение. Несколько примеров:</p>
+
+    <div class="grid">
+      <!-- Вариант 1 -->
+      <div>
+        <div class="prompt-tag"><small>Промпт:</small> «Одень в костюм»</div>
+        <div class="pair">
+          <img src="result_1a.jpg" alt="Результат 1 — слева">
+          <img src="result_1b.jpg" alt="Результат 1 — справа">
+        </div>
+      </div>
+  
+      <!-- Вариант 2 -->
+      <div>
+        <div class="prompt-tag"><small>Промпт:</small> «Одень толстовку и добавь волосы»</div>
+        <div class="pair">
+          <img src="result_2a.jpg" alt="Результат 2 — слева">
+          <img src="result_2b.jpg" alt="Результат 2 — справа">
+        </div>
+      </div>
+  
+      <!-- Вариант 3 -->
+      <div>
+        <div class="prompt-tag"><small>Промпт:</small> «Часы измени на игрушку»</div>
+        <div class="pair">
+          <img src="result_3a.jpg" alt="Результат 3 — слева">
+          <img src="result_3b.jpg" alt="Результат 3 — справа">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card">
+    <h3>Советы</h3>
+    <ul>
+      <li>Старайтесь формулировать запросы конкретно (стиль, тон, фон, детали).</li>
+      <li>Если кредиты закончились — откройте «Купить подписку» или используйте реферальный код.</li>
+      <li>Сложные запросы могут занимать больше времени — дождитесь ответа бота.</li>
+      <li>Сначала загружай фото, затем отдельным запросом промпт.</li>
+      <li>Если бот упал с ошибкой "Упс, что-то пошло не так при генерации. Попробуйте ещё раз позже.", попробуйте еще раз или поменяйте промпт.</li>
+      <li>Если за невалидную генерацию ошибочно списались кредиты, пишите в техподдержку @lechat_Alexey.</li>
+    </ul>
+  </div>
+
+  <a id="open-bot" class="btn" href="#">Перейти в начало</a>
+</div>
+
+<script>
+  const BOT_URL = "https://t.me/nanaaa_banana_video_bot";
+  const tg = window.Telegram?.WebApp;
+
+  if (tg) {
+    tg.expand();
+    tg.MainButton.setText("Начать генерировать");
+    tg.MainButton.onClick(() => {
+      tg.openTelegramLink(BOT_URL);
+      // чуть подождём, чтобы линк успел открыться, затем закроем mini-app
+      setTimeout(() => tg.close(), 150);
+    });
+    tg.MainButton.show();
+
+    // подстройка под тему Telegram
+    if (tg.themeParams?.bg_color) {
+      document.body.style.backgroundColor = tg.themeParams.bg_color;
+    }
+  } else {
+    // если открыто вне Telegram — просто переадресуем в бота sddf
+    window.location.href = BOT_URL;
+  }
+</script>
+
+
+</body>
+</html>
