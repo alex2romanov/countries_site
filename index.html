@@ -123,6 +123,9 @@
     if (tg.themeParams?.bg_color) {
       document.body.style.backgroundColor = tg.themeParams.bg_color;
     }
+    if (tg.themeParams?.text_color) {
+    document.body.style.color = tg.themeParams.text_color;
+    }
   } else {
     // если открыто вне Telegram — просто переадресуем в бота sddf
     window.location.href = BOT_URL;
