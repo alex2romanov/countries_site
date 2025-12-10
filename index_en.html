@@ -97,6 +97,9 @@
     tg.MainButton.onClick(() => { tg.openTelegramLink(BOT_URL); setTimeout(() => tg.close(), 150); });
     tg.MainButton.show();
     if (tg.themeParams?.bg_color) document.body.style.backgroundColor = tg.themeParams.bg_color;
+    if (tg.themeParams?.text_color) {
+    document.body.style.color = tg.themeParams.text_color;
+    }
   } else {
     window.location.href = BOT_URL;
   }
